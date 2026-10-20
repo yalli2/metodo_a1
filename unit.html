@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Método A1 · Unidad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,700;12..96,800&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app"></div>
+<script src="js/units.js"></script>
+<script src="js/engine.js"></script>
+<script>
+(function(){
+  var n=parseInt(new URLSearchParams(location.search).get("u"),10);
+  var meta=window.UNIT_LIST.find(function(u){return u.n===n;});
+  if(!meta){location.replace("index.html");return;}
+  var s=document.createElement("script");
+  s.src="data/unit"+n+".js";
+  s.onload=function(){renderUnit(window.UNITS[n],meta);};
+  s.onerror=function(){document.getElementById("app").innerHTML='<p style="padding:40px">이 단원의 데이터를 불러오지 못했습니다. <a href="index.html">목차로</a></p>';};
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>
